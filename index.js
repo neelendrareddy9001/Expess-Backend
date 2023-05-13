@@ -3,6 +3,31 @@ const path = require('path');
 
 const app = express();
 
+const members = [
+    {
+        id: 1,
+        name: 'John Doe',
+        email: 'jogn@gmail.com',
+        status: 'active'
+    },
+    {
+        id: 2,
+        name: 'Bob Williams',
+        email: 'bob@gmail.com',
+        status: 'inactive'
+    },
+    {
+        id: 3,
+        name: 'Shannon Jackson',
+        email: 'shannon@gmail.com',
+        status: 'active'
+    }
+];
+
+app.get('/api/members', (req, res) => {
+    res.json(members);
+})
+
 // app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // })
