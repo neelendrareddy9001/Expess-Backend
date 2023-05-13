@@ -11,6 +11,9 @@ const app = express();
 //Init middleware
 //app.use(logger);
 
+// //Handlebars Middleware
+app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 //Body Parseer Middleware
 app.use(express.json());
@@ -24,14 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req,res) => res.render('index', {
     title: 'Member App'
 }));
-
-
-// //Handlebars Middleware
-app.engine('handlebars', exphbs.engine({
-    defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, 'views/layouts')
-}));
-app.set('view engine', 'handlebars');
 
 //Member API Routes
 app.use('/api/members', require('./routes//api/members'));
