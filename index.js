@@ -3,8 +3,9 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const logger = require('./middleware/Logger');
 
+
 const app = express();
-const hbs = exphbs.create({/* config */})
+// const hbs = exphbs.create({/* config */})
 
 //Init middleware
 //app.use(logger);
@@ -17,15 +18,16 @@ app.use(express.urlencoded({extended: false}));
 //Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 //Homepate Routes
 app.get('/', (req,res) => res.render('index', {
     title: 'Member App'
 }));
 
-//Handlebars Middleware
-app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
 
+// //Handlebars Middleware
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 //Member API Routes
 app.use('/api/members', require('./routes//api/members'));
