@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const logger = require('./middleware/Logger');
 
 
+
 const app = express();
 // const hbs = exphbs.create({/* config */})
 
@@ -26,7 +27,10 @@ app.get('/', (req,res) => res.render('index', {
 
 
 // //Handlebars Middleware
-app.engine('handlebars', exphbs());
+app.engine('handlebars', exphbs.engine({
+    defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, 'views/layouts')
+}));
 app.set('view engine', 'handlebars');
 
 //Member API Routes
