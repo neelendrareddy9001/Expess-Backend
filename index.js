@@ -12,7 +12,14 @@ const app = express();
 //app.use(logger);
 
 // //Handlebars Middleware
-app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
+app.get('/', function (req, res) {
+    res.render('index');
+})
+
+//Homepage Routes
 app.set('view engine', 'handlebars');
 
 //Body Parseer Middleware
@@ -20,11 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 //Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './public')));
 
-
-//Homepate Routes
-app.get('/', (req,res) => res.render('index', {layout: 'main'}));
 
 //Member API Routes
 app.use('/api/members', require('./routes//api/members'));
