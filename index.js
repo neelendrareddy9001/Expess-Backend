@@ -24,9 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Homepate Routes
-app.get('/', (req,res) => res.render('index', {
-    title: 'Member App'
-}));
+app.get('/', (req,res) => res.render('index', {layout: 'main'}));
 
 //Member API Routes
 app.use('/api/members', require('./routes//api/members'));
